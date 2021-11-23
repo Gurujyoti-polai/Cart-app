@@ -24,9 +24,25 @@ increaseQuantity = () =>{
         return {
           qty: prevState.qty + 1
         }
+      }, () => {
+        console.log('this.state', this.state);
       });
 }
+decreaseQuantity = () => {
+    const { qty } = this.state;
+
+    if (qty === 0) {
+      return;
+    }
+    // setState form 2 - if prevState required use this
+    this.setState((prevState) => {
+      return {
+        qty: prevState.qty - 1
+      }
+    });
+}
     render() {
+        console.log('render');
         const { price, title, qty } = this.state;
         return (
             <div className="cart-item">
@@ -45,6 +61,7 @@ increaseQuantity = () =>{
                         />
                         <img
                          alt="decrease" className="action-icons" src="https://as2.ftcdn.net/v2/jpg/04/60/56/57/500_F_460565747_PE6uYbtfeXASxkZpibOoN6SKUWTUHPvY.jpg" 
+                         onClick={this.decreaseQuantity}
                         />
                         <img
                          alt="delete" className="action-icons" src="https://cdn-icons.flaticon.com/png/512/484/premium/484611.png?token=exp=1637384550~hmac=e4cda09401617836b40f8606dd842bde" 
