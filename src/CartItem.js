@@ -1,55 +1,6 @@
 import React from 'react'
 
 class CartItem extends React.Component {
-    
-  // testing () {
-  //   const promise = new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve('done');
-  //     }, 5000);
-  //   })
-
-  //   promise.then(() => {
-  //     // setState acts like a synchronus call
-  //     this.setState({ qty: this.state.qty + 10 });
-
-  //     this.setState({ qty: this.state.qty + 10 });
-
-  //     this.setState({ qty: this.state.qty + 10 });
-
-  //     console.log('state', this.state);
-  //   });
-  // }
-increaseQuantity = () =>{
-    // this.state.qty += 1;
-    // console.log('this', this.state);
-    // setState form 1
-    // this.setState({
-    //   qty: this.state.qty + 1
-    // });
-
-    // setState form 2 - if prevState required use this
-    this.setState((prevState) => {
-        return {
-          qty: prevState.qty + 1
-        }
-      }, () => {
-        console.log('this.state', this.state);
-      });
-}
-decreaseQuantity = () => {
-    const { qty } = this.state;
-
-    if (qty === 0) {
-      return;
-    }
-    // setState form 2 - if prevState required use this
-    this.setState((prevState) => {
-      return {
-        qty: prevState.qty - 1
-      }
-    });
-}
     render() {
         console.log('this.props', this.props);
         const { price, title, qty } = this.props.product;
@@ -66,7 +17,7 @@ decreaseQuantity = () => {
                         {/*Buttons*/}
                         <img
                          alt="increase" className="action-icons" src="https://cdn-icons.flaticon.com/png/512/3303/premium/3303893.png?token=exp=1637384375~hmac=f93642a42c38b04921f62a15a94abfe0" 
-                         onClick={this.increaseQuantity}
+                         onClick={() => this.props.onIncreaseQuantity(this.props.product)}
                         />
                         <img
                          alt="decrease" className="action-icons" src="https://as2.ftcdn.net/v2/jpg/04/60/56/57/500_F_460565747_PE6uYbtfeXASxkZpibOoN6SKUWTUHPvY.jpg" 
